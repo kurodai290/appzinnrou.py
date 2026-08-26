@@ -1,40 +1,13 @@
-<!doctype html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>オンライン人狼</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-<main class="app">
-  <h1>🐺 オンライン人狼</h1>
-  <p class="sub">5〜10人で遊べます</p>
-
-  <section id="home" class="card">
-    <input id="name" maxlength="12" placeholder="名前">
-    <button id="create">ルームを作る</button>
-    <div class="line">または</div>
-    <input id="code" maxlength="6" placeholder="ルームコード">
-    <button id="join">ルームに参加</button>
-  </section>
-
-  <section id="room" class="card hidden">
-    <h2>ルーム <span id="roomCode"></span></h2>
-    <p id="phase">待機中</p>
-    <div id="players"></div>
-    <button id="start" class="hidden">ゲーム開始</button>
-  </section>
-
-  <section id="game" class="card hidden">
-    <h2 id="roleTitle">役職</h2>
-    <p id="roleText"></p>
-    <div id="actionArea"></div>
-  </section>
-
-  <section id="message" class="message"></section>
-</main>
-<script src="/socket.io/socket.io.js"></script>
-<script src="app.js"></script>
-</body>
-</html>
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>オンライン人狼</title><link rel="stylesheet" href="style.css"></head>
+<body><main class="app"><header><h1>🐺 オンライン人狼</h1><p>5〜10人＋ゲームマスター</p></header>
+<section id="home" class="card"><h2>参加する</h2><label>名前</label><input id="name" maxlength="12" placeholder="名前を入力">
+<label>参加方法</label><div class="mode"><label><input type="radio" name="mode" value="player" checked> 👤 プレイヤー</label><label><input type="radio" name="mode" value="gm"> 👑 ゲームマスター</label></div>
+<button id="create">🏠 ルームを作る</button><div class="or">または</div><label>ルームコード</label><input id="code" maxlength="6" placeholder="例：ABC123"><button id="join">🚪 ルームに参加</button></section>
+<section id="room" class="card hidden"><div class="room-top"><div><h2>ルーム</h2><div id="roomCode" class="room-code">------</div></div><div id="gmBadge" class="gm-badge hidden">👑 GM</div></div>
+<div class="progress"><div id="progressIcon" class="progress-icon">⏳</div><div><div id="progressTitle" class="progress-title">待機中</div><div id="progressDescription" class="progress-description"></div></div></div>
+<div id="gmPanel" class="gm-panel hidden"><div class="gm-title">👑 ゲームマスター</div><div>ゲームには参加せず、進行だけを操作できます。</div><button id="gmNext">⏭️ 次の日へ進める</button></div>
+<div id="playerCount" class="player-count">0 / 10人</div><div id="players" class="players"></div>
+<button id="start" class="start-button hidden">🎮 ゲーム開始</button><button id="reset" class="reset-button hidden">🔄 ゲームをリセット</button></section>
+<section id="game" class="card hidden"><div id="gameStatus" class="game-status"></div><div class="role-box"><div class="role-label">あなたの役職</div><div id="roleText" class="role-text">---</div></div><div id="gameInstruction" class="instruction"></div><div id="actionArea"></div></section>
+<div id="message" class="message"></div></main><script src="/socket.io/socket.io.js"></script><script src="app.js"></script></body></html>
